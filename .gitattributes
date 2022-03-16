@@ -1,0 +1,21 @@
+* text eol=lf
+
+*.ai binary
+*.doc binary
+*.docx binary
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.mp3 binary
+*.mp4 binary
+*.pdf binary
+*.png binary
+*.ppt binary
+*.pptx binary
+*.psd binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.xls binary
+*.xlsx binary
+*.zip binary

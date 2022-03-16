@@ -1,0 +1,22 @@
+.root {
+  padding: 1rem 2rem;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  ul {
+    display: grid;
+    justify-items: start;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  li {
+    border: 1px solid navy;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+  }
+}
