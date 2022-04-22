@@ -23,7 +23,7 @@ const addFx = createEffect<{ value: string }, string, Error>(({ value }) => {
 
 console.group('Model definition');
 
-// Look: only store watchers called on init, not event/effect ones
+console.log('Look: only store watchers called on init, not event/effect ones');
 
 $items.watch((items) => {
   console.log('[watch] $items changed:', `[${items.toString()}]`);
@@ -31,13 +31,11 @@ $items.watch((items) => {
 
 $items.on(addEv, (items, newItem) => {
   console.log('[on] added to $items by addEv:', { items: `[${items.toString()}]`, newItem });
-
   return [...items, newItem];
 });
 
 $items.on(addFx.doneData, (items, nextItem) => {
   console.log('[on] added to $items by addFx.doneData:', { items: `[${items.toString()}]`, nextItem });
-
   return [...items, nextItem];
 });
 
@@ -88,7 +86,7 @@ $items.off(resetEv1);
 
 addEv('thing 3');
 
-console.log('--- Look: event is called, but store stays unchanged');
+console.log('Look: event is called, but store stays unchanged');
 
 resetEv1();
 addEv('thing 4');
