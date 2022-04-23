@@ -34,5 +34,14 @@ successOrFailureFx.failData.watch((reason) => {
   console.log('[watch] successOrFailureFx.failData, error', reason);
 });
 
+// Look: .inFlight fires before .pending (except initialization triggers, where in subscription order)
+successOrFailureFx.inFlight.watch((count) => {
+  console.log('[watch] successOrFailureFx.inFlight, count', count);
+});
+
+console.group('Actions');
+
 successOrFailureFx({ isOk: true });
 successOrFailureFx({ isOk: false });
+
+console.groupEnd();
