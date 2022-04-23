@@ -40,12 +40,13 @@ fetchPostFx.watch((value) => {
   console.log('[watch] fetchPostFx called with', value);
 });
 
-fetchPostFx.done.watch(({ params, result }) => {
-  console.log('[watch] fetchPostFx.done called with params', params, 'result', result);
-});
-
 fetchPostFx.doneData.watch((value) => {
   console.log('[watch] fetchPostFx.doneData called with value', value);
+});
+
+// Look: .done triggers before .doneData
+fetchPostFx.done.watch(({ params, result }) => {
+  console.log('[watch] fetchPostFx.done called with params', params, 'result', result);
 });
 
 postIdIncremented(1);
