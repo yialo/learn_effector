@@ -1,3 +1,3 @@
 import './index.css';
 
-import './learn-core/units/effect-events';
+import './learn-core/units/effect-finally';
