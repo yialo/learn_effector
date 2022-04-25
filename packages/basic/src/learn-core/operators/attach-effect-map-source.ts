@@ -1,8 +1,11 @@
 import { attach, createStore, createEffect } from 'effector';
 
-type OriginalFxParams = {
-  env: string;
+type MapperParams = {
   courseId: number;
+};
+
+type OriginalFxParams = MapperParams & {
+  env: string;
   userId: number;
 };
 
@@ -19,7 +22,7 @@ const $user = createStore({
 const derivedFx = attach({
   effect: originalFx,
   source: $user,
-  mapParams: ({ courseId }, srcState) => ({
+  mapParams: ({ courseId }: MapperParams, srcState) => ({
     courseId,
     env: 'production',
     userId: srcState.id,
