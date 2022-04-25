@@ -1,3 +1,3 @@
 import './index.css';
 
-import './learn-core/operators/combine';
+import './learn-core/operators/restore';
