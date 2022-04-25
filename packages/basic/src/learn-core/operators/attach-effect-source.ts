@@ -7,20 +7,18 @@ const $user = createStore({
 });
 
 const $env = createStore({
-  target: 'state',
+  target: 'stage',
   isDebugMode: false,
 });
 
-type CombinedStore = {
+type CombinedObjStore = {
   user: typeof $user;
   env: typeof $env;
 };
 
-type CombinedState = GetShapeValue<CombinedStore>;
+type CombinedObjState = GetShapeValue<CombinedObjStore>;
 
-const fetchCombinedQueryFx = createEffect((params: CombinedState) => {
-  console.log('fetchCombinedQueryFx called with params:', params);
-
+const fetchCombinedQueryObjFx = createEffect((params: CombinedObjState) => {
   const {
     env: { target },
     user: { name },
@@ -28,12 +26,43 @@ const fetchCombinedQueryFx = createEffect((params: CombinedState) => {
   return Promise.resolve(`User name: ${name}, env: ${target}`);
 });
 
-const attachedFx = attach({
+const attachedObjFx = attach({
   source: {
     env: $env,
     user: $user,
   },
-  effect: fetchCombinedQueryFx,
+  effect: fetchCombinedQueryObjFx,
 });
 
-attachedFx();
+fetchCombinedQueryObjFx.watch((params) => {
+  console.log('[watch] fetchCombinedQueryObjFx, params', params);
+});
+
+attachedObjFx.watch(() => {
+  console.log('[watch] attachedObjFx');
+});
+
+type CombinerArrStore = [typeof $env, typeof $user];
+
+type CombinerArrState = GetShapeValue<CombinerArrStore>;
+
+const fetchCombinedQueryArrFx = createEffect((params: CombinerArrState) => {
+  const [{ target }, { name }] = params;
+  return Promise.resolve(`User name: ${name}, env: ${target}`);
+});
+
+const attachedArrFx = attach({
+  source: [$env, $user],
+  effect: fetchCombinedQueryArrFx,
+});
+
+fetchCombinedQueryArrFx.watch((params) => {
+  console.log('[watch] fetchCombinedQueryArrFx, params', params);
+});
+
+attachedArrFx.watch(() => {
+  console.log('[watch] attachedArrFx');
+});
+
+attachedObjFx();
+attachedArrFx();
