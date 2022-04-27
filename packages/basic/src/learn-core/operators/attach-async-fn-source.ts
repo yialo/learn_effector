@@ -17,4 +17,8 @@ derivedFx.watch((message) => {
   console.log('[watch] derivedFx, message:', message);
 });
 
+derivedFx.doneData.watch((data) => {
+  console.log('[watch] derivedFx, message:', data);
+});
+
 derivedFx('Good one!');
